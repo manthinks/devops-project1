@@ -60,7 +60,7 @@ for future see if you can do for multi tier app as well.
 3. using docker file create an image of that app.
 4. run the app.
 
-
+5\.
 
 #### 
 
