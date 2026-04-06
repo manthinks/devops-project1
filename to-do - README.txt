@@ -1,16 +1,39 @@
 
 
-1. create a local folder in windows machine:
-	step day0:- git install
-	step1:- Cd to the directory
-	step2:- git init
-	step3:- git login
-	step4:- git add *
-	step4:- git commit
-	step5:- git push	 
-2. git initialize it
-3. push this file on your manthinks GitHub account
-4. prepair simple forntent app .
+1. push the code on the GitHub
+
+# create an empty repo in the GitHub and copy its URL which will be used as origin
+
+# install git 
+
+# set the email which will be displayed in the GitHub as the user who has done the commit NOTE:- it is not compulsory to  use the same email as this GitHub account.
+git config --global user.name "Your Name"
+git config --global user.email "your-email@example.com"
+
+# Open CMD and move to the directory of your code 
+
+# Initialize git in your folder
+git init
+
+# Add your file to staging
+git add .
+
+# Commit the file
+git commit -m "my first commit"
+
+# Rename branch to main (GitHub default)
+git branch -M main
+
+# Connect to your GitHub repo (paste your URL here)
+git remote add origin https://github.com/your-username/my-first-repo.git
+
+# Push the file to GitHub
+git push -u origin main	 
+
+
+
+
+2. prepair simple forntent app .
 	prompt claude to prepare a single tier web app which i can create image.
 	for future see if you can do for multi tier app as well.
 5. using docker file create an image of that app.
