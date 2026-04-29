@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:workflow xmlns:ns2="http://vmware.com/vco/workflow" root-name="item2" object-name="workflow:name=generic" id="f6ac200c-088d-4539-a42c-97d56ea08117" editor-version="2.0" version="0.0.0" api-version="6.0.0" restartMode="1" resumeFromFailedMode="0">
+    <display-name>Demo-Configuration element</display-name>
+    <position y="50.0" x="40.0"/>
+    <input/>
+    <output>
+        <param name="vmName" type="string"/>
+        <param name="vmDiskSize" type="number"/>
+        <param name="vmMemorySize" type="number"/>
+        <param name="vmNbOfCpus" type="number"/>
+    </output>
+    <attrib name="vmInfo" type="ConfigurationElement">
+        <value encoded="n">dunes://service.dunes.ch/ConfigurationElement?id='6a80e975-36dd-472b-ae3c-c309c5ae96cc'&amp;dunesName='ConfigurationElement'</value>
+    </attrib>
+    <attrib name="home" type="ResourceElement">
+        <value encoded="n">dunes://service.dunes.ch/ResourceElement?id='35727f48-c829-4b5b-97da-41cda31a207f'&amp;dunesName='ResourceElement'</value>
+    </attrib>
+    <workflow-item name="item0" type="end" end-mode="0" comparator="0">
+        <in-binding/>
+        <out-binding/>
+        <position y="50.0" x="400.0"/>
+    </workflow-item>
+    <workflow-item name="item2" out-name="item3" type="task" comparator="0">
+        <display-name>Scriptable task</display-name>
+        <script encoded="false">var vmName = vmInfo.getAttributeWithKey("vmName").value;
+var vmMemorySize = vmInfo.getAttributeWithKey("vmMemorySize").value;
+var vmCPU= vmInfo.getAttributeWithKey("vmCPU").value;
+var vmDisk = vmInfo.getAttributeWithKey("vmDisk").value;
+
+vmNbOfCpus = vmCPU;
+vmDiskSize = vmDisk;
+System.log(vmNbOfCpus);
+System.log(vmMemorySize);
+System.log(vmDiskSize);
+System.log(vmName);
+</script>
+        <in-binding>
+            <bind name="vmInfo" type="ConfigurationElement" export-name="vmInfo"/>
+        </in-binding>
+        <out-binding/>
+        <description>Simple task with custom script capability.</description>
+        <position y="60.0" x="120.0"/>
+    </workflow-item>
+    <workflow-item name="item3" out-name="item0" type="task" comparator="0">
+        <display-name>Scriptable task</display-name>
+        <script encoded="false">System.log("Resource Name: " + home.name);
+
+var mimeAttachment = home.getContentAsMimeAttachment();
+
+var content = mimeAttachment.content;
+
+System.log("File Content:");
+System.log(content);</script>
+        <in-binding>
+            <bind name="home" type="ResourceElement" export-name="home"/>
+        </in-binding>
+        <out-binding/>
+        <description>Simple task with custom script capability.</description>
+        <position y="60.0" x="220.0"/>
+    </workflow-item>
+</ns2:workflow>
